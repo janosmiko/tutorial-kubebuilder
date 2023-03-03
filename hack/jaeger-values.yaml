@@ -1,0 +1,72 @@
+provisionDataStore:
+  cassandra: false
+allInOne:
+  enabled: true
+  ingress:
+    enabled: true
+    hosts:
+      - jaeger-query.jaeger
+agent:
+  enabled: false
+query:
+  enabled: false
+collector:
+  enabled: false
+storage:
+  type: none
+
+extraObjects:
+  - apiVersion: networking.k8s.io/v1
+    kind: Ingress
+    metadata:
+      name: jaeger-collector
+      namespace: jaeger
+    spec:
+      rules:
+        - host: jaeger-collector.jaeger
+          http:
+            paths:
+              - path: /
+                pathType: ImplementationSpecific
+                backend:
+                  service:
+                    name: jaeger-collector
+                    port:
+                      number: 14268
+  - apiVersion: v1
+    kind: Service
+    metadata:
+      name: jaeger-collector-exposed
+      namespace: jaeger
+    spec:
+      ports:
+        - name: http-zipkin
+          protocol: TCP
+          port: 9411
+          targetPort: 9411
+        - name: grpc-http
+          protocol: TCP
+          port: 14250
+          targetPort: 14250
+        - name: c-tchan-trft
+          protocol: TCP
+          port: 14267
+          targetPort: 14267
+        - name: http-c-binary-trft
+          protocol: TCP
+          port: 14268
+          targetPort: 14268
+        - name: otlp-grpc
+          protocol: TCP
+          port: 4317
+          targetPort: 4317
+        - name: otlp-http
+          protocol: TCP
+          port: 4318
+          targetPort: 4318
+      selector:
+        app.kubernetes.io/component: all-in-one
+        app.kubernetes.io/instance: jaeger
+        app.kubernetes.io/name: jaeger
+      clusterIP: ""
+      type: ClusterIP

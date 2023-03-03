@@ -1,8 +1,8 @@
-# tmp
-// TODO(user): Add simple overview of use/purpose
+# Tutorial-Kubebuilder
+Sample repository for https://janosmiko.com/blog/2023-03-02-tutorial-kubebuilder-1/
 
 ## Description
-// TODO(user): An in-depth paragraph about your project and overview of use
+Sample repository for https://janosmiko.com/blog/2023-03-02-tutorial-kubebuilder-1/
 
 ## Getting Started
 You’ll need a Kubernetes cluster to run against. You can use [KIND](https://sigs.k8s.io/kind) to get a local cluster for testing, or run against a remote cluster.
@@ -18,13 +18,13 @@ kubectl apply -f config/samples/
 2. Build and push your image to the location specified by `IMG`:
 
 ```sh
-make docker-build docker-push IMG=<some-registry>/tmp:tag
+make docker-build docker-push IMG=<some-registry>/tutorial-kubebuilder:tag
 ```
 
 3. Deploy the controller to the cluster with the image specified by `IMG`:
 
 ```sh
-make deploy IMG=<some-registry>/tmp:tag
+make deploy IMG=<some-registry>/tutorial-kubebuilder:tag
 ```
 
 ### Uninstall CRDs

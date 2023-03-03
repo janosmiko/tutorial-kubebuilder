@@ -1,0 +1,14 @@
+apiVersion: tutorial.janosmiko.com/v1alpha1
+kind: DomainResolver
+metadata:
+  labels:
+    app.kubernetes.io/name: domainresolver
+    app.kubernetes.io/instance: domainresolver-sample
+    app.kubernetes.io/part-of: tutorial-kubebuilder
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/created-by: tutorial-kubebuilder
+  name: domainresolver-sample
+spec:
+  id: test
+  domain: janosmiko.com
+  # TODO(user): Add fields here

@@ -1,0 +1,31 @@
+# permissions for end users to edit domainresolvers.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  labels:
+    app.kubernetes.io/name: clusterrole
+    app.kubernetes.io/instance: domainresolver-editor-role
+    app.kubernetes.io/component: rbac
+    app.kubernetes.io/created-by: tutorial-kubebuilder
+    app.kubernetes.io/part-of: tutorial-kubebuilder
+    app.kubernetes.io/managed-by: kustomize
+  name: domainresolver-editor-role
+rules:
+- apiGroups:
+  - tutorial.janosmiko.com
+  resources:
+  - domainresolvers
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - tutorial.janosmiko.com
+  resources:
+  - domainresolvers/status
+  verbs:
+  - get
